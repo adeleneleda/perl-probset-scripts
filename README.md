@@ -1,4 +1,4 @@
-# perl-probset-sripts
+# perl-probset-scripts
 
 #### 5 PERL Scripts with at least 50 lines of Code each
 
