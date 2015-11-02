@@ -1,0 +1,72 @@
+#!/usr/bin/perl
+
+# Game of Rock, Paper, Scissors (Best of 5)
+# Computer makes random plays.
+# Stores can be stored at the scoreboard.
+# Sample run: ./ps5
+# Output at: cat ps5_scoreboard
+
+@options = qw(R S P);
+%labels = ('R' => 'Rock', 
+           'S' => 'Scissors', 
+           'P' => 'Paper');
+%wins = ('R' => 'S', 
+         'S' => 'P', 
+         'P' => 'R');
+
+$pl_score = 0;
+$pc_score = 0;
+
+for $i (1..5) {
+  print "Rock (R), Paper (P), Scissors (S)? ";
+  chomp($option = <STDIN>);
+
+  while($option ne 'R' && $option ne 'P' && $option ne 'S') {
+    print "[ERROR] Not a valid option. Try again!\n";
+    print "Rock (R), Paper (P), Scissors (S)? ";
+    chomp($option = <STDIN>);
+  }
+
+  $rand_index =  int(rand(3));
+  $pc_option = @options[$rand_index];
+
+  print "Computer attacks: $labels{ $pc_option } ($pc_option)\n";
+
+  if($pc_option eq $option) {
+    print "[RESULT][TIE] It's a tie!\n";
+  } elsif ($wins{ $option } eq $pc_option) {
+    print "[RESULT][WIN] You win!\n";
+    $pl_score += 1;
+  } else {
+    print "[RESULT][LOSE] You lose.\n";
+    $pc_score += 1;
+  }
+
+  print "\n";
+}
+
+print "*" x 40, "\n";
+print "*" x 12, " " x 5, "SCORES", " " x 5, "*" x 12, "\n";
+print " " x 10, "YOU: ", $pl_score, (" " x 10), "PC: ", $pc_score, "\n";
+print "*" x 40, "\n";
+
+
+if ($pc_score > $pl_score) {
+  print "Computer won! Try again. :)";
+  $suffix = "[L]";
+} elsif($pc_score == $pl_score) {
+  print "It's a TIEEEE!\n";
+  $suffix = "[T]";
+} else {
+  print "You're the Champion! \\:D/\n";
+  $suffix = "[W]";
+}
+
+
+print "Enter your name to be scored in the scoreboard: ";
+chomp($name = <STDIN>);
+
+open SCOREBOARD, ">> ps5_scoreboard";
+print SCOREBOARD "$suffix $name -- $pl_score\n";
+
+print "See scoreboard at file: ps5_scoreboard\n";

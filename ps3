@@ -1,0 +1,64 @@
+#!/usr/bin/perl
+
+# Insertion sort with perl
+# Outputs sorted number sequence in file provided by user
+# Reads numbers to be sorted from input file to be provided at commandline
+# Sample run: ./ps2 ps2_input
+
+sub insertion_sort {
+  @list = @_;
+
+  foreach $i (1 .. $#list){
+    $j = $i;
+    $tmp = $list[$i];
+
+    &slide($tmp, $j);
+    $list[$j]=$tmp;
+
+  }
+  return @list;
+}
+
+sub slide {
+  ($tmp, $j) = @_;
+
+  while ($j > 0 && $tmp < $list[$j-1]) {
+        $list[$j] = $list[$j-1];
+        $j = $j - 1;
+    }
+}
+
+sub process_and_sort {
+  my @test = &insertion_sort(@numbers);
+  print "@test\n";
+
+  foreach(@numbers) {
+    print OUTPUT "$_\n";
+  }
+  print OUTPUT "\n";
+  @numbers = ();
+}
+
+
+@numbers = ();
+
+print "Enter output file: ";
+chomp($output = <STDIN>);
+
+open OUTPUT, "> $output";
+
+while (defined($line = <>)) {
+  chomp($line);
+
+  if($line ne '') {
+    push @numbers, $line;
+
+  } else {
+    # process accumulated list
+    &process_and_sort
+  }
+}
+
+&process_and_sort;
+
+close OUTPUT;

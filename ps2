@@ -1,0 +1,64 @@
+#!/usr/bin/perl
+
+sub lcm {
+  ($a, $b) = @_;
+
+  (($a * $b) / &gcf($a, $b));
+}
+
+sub gcf {
+  ($a, $b) = @_;
+
+
+  while($a != 0) {
+    ($a, $b) = ($b%$a, $a);
+  }
+  return $b;
+
+}
+
+sub prime_factor {
+  ($num, $factor) = @_;
+
+  $factor = 2 unless defined($factor);
+
+  if($factor <= $num) {
+    if($num % $factor == 0) {
+      push @prime_factors, $factor;
+      prime_factor($num / $factor, $factor);
+    } else {
+      prime_factor($num, $factor + 1);
+    }
+  }
+}
+
+
+open OUTPUT, "> ps2_output";
+
+while (defined($line = <>)) { 
+  chomp($line);
+
+  @numbers = split(/ /, $line);
+
+
+  ($_gcf, $_lcm) = (&gcf(@numbers), &lcm(@numbers));
+
+  
+  print OUTPUT "Found numbers: @numbers\n";
+  print OUTPUT "Least common denominator is: $_gcf\n";
+  print OUTPUT "Greatest common factor is: $_lcm\n";
+
+  @prime_factors = ();
+  &prime_factor(@numbers[0]);
+  # print @prime_factors;
+  print OUTPUT "Prime factors of @numbers[0] is @prime_factors.\n";
+
+  @prime_factors = ();
+  &prime_factor(@numbers[1]);
+  print OUTPUT "Prime factors of @numbers[1] is @prime_factors.\n";
+
+  print OUTPUT "*" x 50, "\n";
+}
+
+close OUTPUT;
+

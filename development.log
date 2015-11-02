@@ -1,0 +1,9 @@
+Started POST "/api/v1/something" for 127.0.0.1 at 2015-10-22 14:42:50 +0800
+Started GET "/beaches/34324324-the-hair-brush/brooms/4342424232-long-hair-for-9?in=2015-10-26&out=2015-10-27" for 127.0.0.1 at 2015-10-22 14:44:50 +0800
+Started GET "/fireworkbykatyperry?_=234234" for 127.0.0.1 at 2015-10-23 14:12:46 +0800
+Processing by TartsController#show as JSON
+  Parameters: {"_"=>"fireworkbykatyperry"}
+  Rendered carts/show.rabl (16.2ms)
+Completed 200 OK in 67ms (Views: 39.7ms)
+Started GET "/babyyoureafirewoooork" for 127.0.0.1 at 2015-10-23 14:12:49 +0800
+Started GET "/comeandletyourcolorsburst/ohohohohohohoh" for 127.0.0.1 at 2015-10-23 14:12:50 +0800
