@@ -52,7 +52,7 @@ print "*" x 40, "\n";
 
 
 if ($pc_score > $pl_score) {
-  print "Computer won! Try again. :)";
+  print "Computer won! Try again. :)\n";
   $suffix = "[L]";
 } elsif($pc_score == $pl_score) {
   print "It's a TIEEEE!\n";

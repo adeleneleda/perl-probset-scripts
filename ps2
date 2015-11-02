@@ -1,5 +1,20 @@
 #!/usr/bin/perl
 
+# Prints LCM, GCM, and prime factors of the given number pair
+# Enter input file at invocation: ./ps2 ps2_input
+# File format should be:
+#   num1 num2 
+#   num3 num4
+#   ...
+# Sample:
+#   1 5
+#   10 15
+#
+# Can also accept input via STDIN: ./ps2
+# Then input numbers by pairs on separate lines
+#   10 25
+#   10 115
+
 sub lcm {
   ($a, $b) = @_;
 
@@ -38,6 +53,8 @@ open OUTPUT, "> ps2_output";
 while (defined($line = <>)) { 
   chomp($line);
 
+  next if ($line eq '');
+
   @numbers = split(/ /, $line);
 
 
@@ -61,4 +78,6 @@ while (defined($line = <>)) {
 }
 
 close OUTPUT;
+
+print "\nOutput is at file: ps2_output\n";
 

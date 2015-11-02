@@ -3,7 +3,22 @@
 # Insertion sort with perl
 # Outputs sorted number sequence in file provided by user
 # Reads numbers to be sorted from input file to be provided at commandline
-# Sample run: ./ps2 ps2_input
+# Sample run: ./ps3 ps3_input
+# If input file is not provided, input will be fetched from STDIN
+# Sample:
+# 1
+# 2
+# 3
+# 2
+# 1
+#
+# 5
+# 4
+# 3
+# 21
+# 1
+# Separate lists of numbers with a newline
+
 
 sub insertion_sort {
   @list = @_;
@@ -62,3 +77,5 @@ while (defined($line = <>)) {
 &process_and_sort;
 
 close OUTPUT;
+
+print "\nPlease check output at $output\n";
